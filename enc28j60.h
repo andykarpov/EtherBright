@@ -298,5 +298,8 @@ unsigned int enc28j60PacketReceive(unsigned int maxlen, unsigned char* packet);
 /// this should be done when the receive memory fills up with packets
 void enc28j60ReceiveOverflowRecover(void);
 
+uint8_t enc28j60linkup();
+
+
 #endif
 //@}

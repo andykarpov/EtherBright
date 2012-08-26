@@ -526,4 +526,11 @@ void enc28j60RegDump(void)
 }
 */
 
+uint8_t enc28j60linkup(void)
+{
+        // bit 10 (= bit 3 in upper reg)
+	return(enc28j60PhyRead(PHSTAT2) & 4);
+}
+
+
 

@@ -53,7 +53,12 @@ typedef unsigned short uip_stats_t;
  *
  * \hideinitializer
  */
+#if defined(__AVR_ATmega1284P__)
+#define UIP_CONF_BUFFER_SIZE     2000
+#else 
 #define UIP_CONF_BUFFER_SIZE     300
+#endif
+
 /**
  * CPU byte order.
  *
@@ -87,7 +92,7 @@ typedef unsigned short uip_stats_t;
  *
  * \hideinitializer
  */
-#define UIP_CONF_STATISTICS      1
+#define UIP_CONF_STATISTICS      0
 
 /**
  * Broadcast support. Needed for dhcp
@@ -104,7 +109,11 @@ typedef unsigned short uip_stats_t;
 #define UIP_CONF_UDP_CONNS		0
 
 #define UIP_REASSEMBLY			0
+#if defined(__AVR_ATmega1284P__)
+#define UIP_CONF_RECEIVE_WINDOW		5500
+#else
 #define UIP_CONF_RECEIVE_WINDOW		2048
+#endif
 
 //Include app configuration
 #include "apps-conf.h"

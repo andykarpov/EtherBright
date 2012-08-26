@@ -380,7 +380,11 @@
  * \hideinitializer
  */
 #ifndef UIP_CONF_BUFFER_SIZE
+#if defined(__AVR_ATmega1284P__)
+#define UIP_BUFSIZE     700
+#else
 #define UIP_BUFSIZE     400
+#endif
 #else /* UIP_CONF_BUFFER_SIZE */
 #define UIP_BUFSIZE UIP_CONF_BUFFER_SIZE
 #endif /* UIP_CONF_BUFFER_SIZE */

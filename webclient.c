@@ -277,21 +277,21 @@ parse_statusline(u16_t len)
 	if(strncmp_P(cptr, http_200, sizeof(http_200) - 1) == 0) {
 	  /* 200 OK */
 	  s.httpflag = HTTPFLAG_OK;
-	  uip_log_P(PSTR("HTTP OK"));
+	  //uip_log_P(PSTR("HTTP OK"));
 	} else if(strncmp_P(cptr, http_301, sizeof(http_301) - 1) == 0 ||
 		  strncmp_P(cptr, http_302, sizeof(http_302) - 1) == 0) {
 	  /* 301 Moved permanently or 302 Found. Location: header line
 	     will contain thw new location. */
 	  s.httpflag = HTTPFLAG_MOVED;
-	  uip_log_P(PSTR("HTTP MOVED"));
+	  //uip_log_P(PSTR("HTTP MOVED"));
 	} else {
 	  s.httpheaderline[s.httpheaderlineptr - 1] = 0;
-          uip_log(s.httpheaderline);
+          //uip_log(s.httpheaderline);
 	}
       } else {
-	uip_log_P(PSTR("HTTP FAILED"));
+	//uip_log_P(PSTR("HTTP FAILED"));
         s.httpheaderline[s.httpheaderlineptr - 1] = 0;
-        uip_log(s.httpheaderline);
+        //uip_log(s.httpheaderline);
 	uip_abort();
 	webclient_aborted();
 	return 0;
@@ -371,12 +371,12 @@ parse_headers(u16_t len)
 	   we are done with the headers and proceed with the actual
 	   data. */
 	s.state = WEBCLIENT_STATE_DATA;
-        uip_log_P(PSTR("WEBCLIENT_STATE_DATA"));
+        //uip_log_P(PSTR("WEBCLIENT_STATE_DATA"));
 	return len;
       }
 
       s.httpheaderline[s.httpheaderlineptr - 1] = 0;
-      uip_log(s.httpheaderline);
+      //uip_log(s.httpheaderline);
       /* Check for specific HTTP header fields. */
       if(casecmp_P(s.httpheaderline, http_content_type,
 		     sizeof(http_content_type) - 1) == 0) {
@@ -422,7 +422,7 @@ parse_headers(u16_t len)
   /* Handle header line overflow */
   if ( s.httpheaderlineptr == sizeof(s.httpheaderline) ) {
     s.httpheaderline[s.httpheaderlineptr - i] = 0;
-    uip_log(s.httpheaderline);
+    //uip_log(s.httpheaderline);
       s.httpheaderlineptr = 0;
   }
 
